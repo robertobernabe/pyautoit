@@ -871,20 +871,3 @@ class AutoItX3():
         """
         return self._aux3.StatusBarGetText(title, text, part)
 
-if __name__ == '__main__':
-    a = AutoItX3()
-    #a.run("calc.exe")
-    #a.autoItX.winwait("Calculator","", 60)
-    #titleHandles = a.autoItX.winlist("[ALL]")
-    #print ("Calculator" in titleHandles[0])
-    #winHandle = a.autoItX.wingethandle("Calculator", "")
-    #print winHandle, type(winHandle)
-    #print a.control_get_handle("[HANDLE:%s]" % winHandle, "", 133)
-    #print AutoItX3().mouse_get_pos()
-    #print AutoItX3().mouse_move(20, 100, speed=0)
-    #print AutoItX3().mouse_down("left")
-    #print AutoItX3().mouse_up("left")
-    print AutoItX3().version, AutoItX3().error
-    AutoItX3().sleep(1000)
-    import pytest
-    pytest.main("tests/test_autoit.py")
