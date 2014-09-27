@@ -24,13 +24,17 @@ class PyTest(TestCommand):
 
 if __name__ == "__main__":
     setup(
-        name='pyautoit', version='0.1',
+        name='pyautoit', version='1.0',
         description='Python wrapper for AutoIt COM interface',
         author='Florian Schaeffeler',
+        author_email="florian.schaeffeler@gmail.com",
+        url="https://github.com/robertobernabe/pyautoit",
+        platforms="Microsoft Windows",
         packages=[
             'autoit'],
         package_dir={'autoit': 'autoit'},
-        package_data={'avira': ['AutoItX3.dll']},
+        package_data={'autoit': ['AutoItX3.dll']},
+        install_requires=['pywin32'],
         tests_require=['pytest'],
         cmdclass={'test': PyTest}
     )
