@@ -871,3 +871,96 @@ class AutoItX3():
         """
         return self._aux3.StatusBarGetText(title, text, part)
 
+    def tool_tip(self, text, x=LOWEST_INT, y=LOWEST_INT):
+        """Creates a tooltip anywhere on the screen.
+        If the x and y coordinates are omitted the, tip is placed near the mouse cursor.
+        If the coords would cause the tooltip to run off screen, it is repositioned to visible.
+        Tooltip appears until it is cleared, until script terminates, or sometimes until it is clicked upon.
+        You may use a linefeed character to create multi-line tooltips.
+
+        :param text: The text of the tooltip. (An empty string clears a displaying tooltip)
+        :type text: str
+        :param x: The x position of the tooltip.
+        :type x: int
+        :param y: The y position of the tooltip.
+        :type y: int
+        :return: None
+        :rtype: None
+        """
+        return self._aux3.ToolTip(text, x, y)
+
+    def win_activate(self, title, text=""):
+        """Activates (gives focus to) a window.
+        You can use the WinActive function to check if WinActivate succeeded. If multiple windows match the criteria,
+        the window that was most recently active is the one activated.
+        WinActivate works on minimized windows. However, a window that is "Always On Top" could still cover up a window
+        you Activated.
+
+        :param title: The title of the window to activate.
+        :type title: str
+        :param text: Optional: The text of the window to activate.
+        :type text: str
+        :return: None
+        :rtype: None
+        """
+        return self._aux3.WinActivate(title, text)
+
+    def win_active(self, title, text=""):
+        """Checks to see if a specified window exists and is currently active.
+
+        :param title: The title of the window to activate.
+        :type title: str
+        :param text: Optional: The text of the window to activate.
+        :type text: str
+        :return: Success: Returns 1.
+                 Failure: Returns 0 if window is not active.
+        :rtype: int
+        """
+        return self._aux3.WinActive(title, text)
+
+    def win_close(self, title, text=""):
+        """Closes a window.
+        This function sends a close message to a window, the result depends on the window
+        (it may ask to save data, etc.). To force a window to close, use the WinKill function.
+        If multiple windows match the criteria, the window that was most recently active is closed.
+
+        :param title: The title of the window to close.
+        :param text: Optional: The text of the window to close.
+        :return: None
+        :rtype: None
+        """
+        return self._aux3.WinClose(title, text)
+
+    def win_exists(self, title, text):
+        """Checks to see if a specified window exists.
+        WinExist will return 1 even if a window is hidden.
+
+        :param title: The title of the window to check.
+        :type title: str
+        :param text: Optional: The text of the window to check.
+        :type text: str
+        :return: Returns 1 if the window exists, otherwise returns 0.
+        """
+        return self._aux3.WinExists(title, text)
+
+    def win_get_caret_pos_x(self):
+        """Returns the coordinates of the caret in the foreground window
+        WinGetCaretPos might not return accurate values for Multiple Document Interface (MDI) applications
+        if absolute CaretCoordMode is used.
+        See example for a workaround.
+        Note: Some applications report static coordinates regardless of caret position!
+
+        :return: Success: Returns the X coordinate of the caret.
+                 Failure: Sets oAutoIt.error to 1.
+        :rtype: int
+        """
+        return self._aux3.WinGetCaretPosX()
+
+    def win_get_caret_pos_y(self):
+        """Returns the coordinates of the caret in the foreground window
+
+        :return: Success: Returns the Y coordinate of the caret.
+                 Failure: Sets oAutoIt.error to 1.
+        :rtype: int
+        """
+        return self._aux3.WinGetCaretPosY()

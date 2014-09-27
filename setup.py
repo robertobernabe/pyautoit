@@ -1,5 +1,5 @@
 __author__ = 'florian.schaeffeler'
-import sys
+import sys, os
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
@@ -34,7 +34,8 @@ if __name__ == "__main__":
             'autoit'],
         package_dir={'autoit': 'autoit'},
         #package_data={'autoit': ['bin/AutoItX3.dll']},
-        data_files=['lib/bin/bin/AutoItX3.dll', 'bin/AutoItX3.dll'],
+        #data_files=[('bin/AutoIt3X', # install where to install within python installation in this case c:\Python27\
+        #             ['bin/AutoItX3.dll'])],
         install_requires=['pywin32'],
         tests_require=['pytest'],
         cmdclass={'test': PyTest}
