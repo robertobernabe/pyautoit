@@ -1,0 +1,2 @@
+include bin/AutoItX3.dll
+include README.md

@@ -33,7 +33,8 @@ if __name__ == "__main__":
         packages=[
             'autoit'],
         package_dir={'autoit': 'autoit'},
-        package_data={'autoit': ['AutoItX3.dll']},
+        #package_data={'autoit': ['bin/AutoItX3.dll']},
+        data_files=['lib/bin/bin/AutoItX3.dll', 'bin/AutoItX3.dll'],
         install_requires=['pywin32'],
         tests_require=['pytest'],
         cmdclass={'test': PyTest}
