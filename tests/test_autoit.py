@@ -14,7 +14,7 @@ def runCalcPid(calcExecFilePath, autoit, request):
     pid = autoit.run(calcExecFilePath)
     closeAutoIt = lambda: autoit.process_close(pid)
     request.addfinalizer(closeAutoIt)
-    assert autoit.au3.WinWait("Calculator", "", 5), "Calculator GUI didn't appear"
+    assert autoit._aux3.WinWait("Calculator", "", 5), "Calculator GUI didn't appear"
     return pid
 
 @pytest.fixture(scope="class")

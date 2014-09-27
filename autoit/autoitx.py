@@ -41,7 +41,7 @@ class AutoItX3():
                         the window for the first time.
     """
     try:
-        au3 = win32com.client.Dispatch("AutoItX3.Control")
+        _aux3 = win32com.client.Dispatch("AutoItX3.Control")
     except pywintypes.com_error, (hr, msg, exc, arg):
         print "Could not bind AutoItX, call failed with code %d: %s" % (hr, msg)
         if exc is None:
@@ -52,18 +52,18 @@ class AutoItX3():
              print "The error message is", text
              print "More info can be found in %s (id=%d)" % (helpFile, helpId)
         raise Exception("Could not bind AutoItX, you may have to register AutoItX.dll\n%s" % 'regsvr32.exe "<path_to>\AutoItX3.dll"')
-    SW_HIDE = au3.SW_HIDE
-    SW_MAXIMIZE = au3.SW_MAXIMIZE
-    SW_MINIMIZE = au3.SW_MINIMIZE
-    SW_RESTORE = au3.SW_RESTORE
-    SW_SHOW = au3.SW_SHOW
-    SW_SHOWDEFAULT = au3.SW_SHOWDEFAULT
-    SW_SHOWMAXIMIZED = au3.SW_SHOWMAXIMIZED
-    SW_SHOWMINIMIZED = au3.SW_SHOWMINIMIZED
-    SW_SHOWMINNOACTIVE = au3.SW_SHOWMINNOACTIVE
-    SW_SHOWNA = au3.SW_SHOWNA
-    SW_SHOWNOACTIVATE = au3.SW_SHOWNOACTIVATE
-    SW_SHOWNORMAL = au3.SW_SHOWNORMAL
+    SW_HIDE = _aux3.SW_HIDE
+    SW_MAXIMIZE = _aux3.SW_MAXIMIZE
+    SW_MINIMIZE = _aux3.SW_MINIMIZE
+    SW_RESTORE = _aux3.SW_RESTORE
+    SW_SHOW = _aux3.SW_SHOW
+    SW_SHOWDEFAULT = _aux3.SW_SHOWDEFAULT
+    SW_SHOWMAXIMIZED = _aux3.SW_SHOWMAXIMIZED
+    SW_SHOWMINIMIZED = _aux3.SW_SHOWMINIMIZED
+    SW_SHOWMINNOACTIVE = _aux3.SW_SHOWMINNOACTIVE
+    SW_SHOWNA = _aux3.SW_SHOWNA
+    SW_SHOWNOACTIVATE = _aux3.SW_SHOWNOACTIVATE
+    SW_SHOWNORMAL = _aux3.SW_SHOWNORMAL
     LOWEST_INT = -2147483647
     LEFT = "left"
     RIGHT = "right"
@@ -77,27 +77,27 @@ class AutoItX3():
         """Status of the error flag (equivalent to the @error macro in AutoIt v3)
         :rtype: int
         """
-        return self.au3.error
+        return self._aux3.error
 
     @property
     def version(self):
         """autoitX dll version (equivalent to @autoitversion macro in AutoIt v3)
         :rtype: unicode
         """
-        return self.au3.version
+        return self._aux3.version
 
     def auto_it_set_option(self, option, param):
         """Changes the operation of various AutoIt functions/parameters."""
-        return self.au3.AutoItSetOption(option, param)
+        return self._aux3.AutoItSetOption(option, param)
 
     def block_input(self):
         """BlockInput Disable/enable the mouse and keyboard."""
-        return self.au3.block_input()
+        return self._aux3.block_input()
 
     def cd_tray(self, drive, status):
         """Opens or closes the CD tray.
         :rtype: int"""
-        return self.au3.CDTray(drive, status)
+        return self._aux3.CDTray(drive, status)
 
     def clip_get(self):
         """Retrieves text from the clipboard.
@@ -105,7 +105,7 @@ class AutoItX3():
         :returns: On Success str containing the text on the clipboard
         :rtype: str
         """
-        return self.au3.ClipGet()
+        return self._aux3.ClipGet()
 
     def clip_put(self, value):
         """Writes text to the clipboard.
@@ -115,7 +115,7 @@ class AutoItX3():
         :returns: 1 Success 0 Failure
         :rtype: int
         """
-        return self.au3.ClipPut(value)
+        return self._aux3.ClipPut(value)
 
     def control_click(self, title, text, controlId, button=LEFT, clicks=1, x=LOWEST_INT, y=LOWEST_INT):
         """Sends a mouse click command to a given control.
@@ -136,7 +136,7 @@ class AutoItX3():
         :return: 1 Success 0 Failure
         :rtype: int
         """
-        return self.au3.ControlClick(title, text, controlId, button, clicks, x, y)
+        return self._aux3.ControlClick(title, text, controlId, button, clicks, x, y)
 
     def control_command(self, title, text, controlId, command, option):
         """Sends a command to a control.
@@ -152,7 +152,7 @@ class AutoItX3():
         :param command: The command to send to the control.
         :param option: Additional parameter required by some commands; use "" if parameter is not required.
         """
-        return self.au3.ControlCommand(title, text, controlId, command, option)
+        return self._aux3.ControlCommand(title, text, controlId, command, option)
 
     def control_disable(self, title, text, controlId):
         """Disables or "grays-out" a control.
@@ -168,7 +168,7 @@ class AutoItX3():
         :return: 1 Success 0 Failure
         :rtype: int
         """
-        return self.au3.ControlDisable(title, text, controlId)
+        return self._aux3.ControlDisable(title, text, controlId)
 
     def control_enable(self, title, text, controlId):
         """Enables a "grayed-out" control.
@@ -181,7 +181,7 @@ class AutoItX3():
         :return: 1 Success 0 Failure
         :rtype: int
         """
-        return self.au3.ControlEnable(title, text, controlId)
+        return self._aux3.ControlEnable(title, text, controlId)
 
     def control_focus(self, title, text, controlId):
         """Sets input focus to a given control on a window.
@@ -194,7 +194,7 @@ class AutoItX3():
         :return: 1 Success 0 Failure
         :rtype: int
         """
-        return self.au3.ControlFocus(title, text, controlId)
+        return self._aux3.ControlFocus(title, text, controlId)
 
     def control_get_focus(self, title, text=""):
         """Returns the ControlRef# of the control that has keyboard focus within a specified window.
@@ -205,7 +205,7 @@ class AutoItX3():
         :return: Success ControlRef# of the control   Failure  a blank string and sets error to 1 if window is not found
         :rtype: unicode
         """
-        return self.au3.ControlGetFocus(title, text)
+        return self._aux3.ControlGetFocus(title, text)
 
     def control_get_handle(self, title, text, controlId):
         """Retrieves the internal handle of a control.
@@ -218,7 +218,7 @@ class AutoItX3():
         :return: Success Returns a string containing the control handle value.
                  Returns "" (blank string) and sets oAutoIt.error to 1 if no window matches the criteria.
         """
-        return self.au3.ControlGetHandle(title, text, controlId)
+        return self._aux3.ControlGetHandle(title, text, controlId)
 
     def control_get_pos_height(self, title, text, controlId):
         """Retrieves the position and size of a control relative to it's window.
@@ -231,7 +231,7 @@ class AutoItX3():
         :return: Returns the height of the control.  Failure sets error to 1.
         :rtype: int
         """
-        return self.au3.ControlGetPosHeight(title, text, controlId)
+        return self._aux3.ControlGetPosHeight(title, text, controlId)
 
     def control_get_pos_width(self, title, text, controlId):
         """Retrieves the position and size of a control relative to it's window.
@@ -244,13 +244,13 @@ class AutoItX3():
         :return: Returns the width of the control.  Failure sets error to 1.
         :rtype: int
         """
-        return self.au3.ControlGetPosWidth(title, text, controlId)
+        return self._aux3.ControlGetPosWidth(title, text, controlId)
 
     def control_get_pos_x(self, title, text, controlId):
-        return self.au3.ControlGetPosX(title, text, controlId)
+        return self._aux3.ControlGetPosX(title, text, controlId)
 
     def control_get_pos_y(self, title, text, controlId):
-        return self.au3.ControlGetPosY(title, text, controlId)
+        return self._aux3.ControlGetPosY(title, text, controlId)
 
     def control_get_pos(self, title, text, controlId):
         """
@@ -274,6 +274,7 @@ class AutoItX3():
 
     def control_get_text(self, title, text, controlId):
         """Retrieves text from a control.
+
         :param title: The title of the window to access.
         :type title: str or int
         :param text: The text of the window to access
@@ -283,7 +284,7 @@ class AutoItX3():
         :return: Returns the text from a control.  Failure sets error to 1 and
         :rtype: unicode
         """
-        return self.au3.ControlGetText(title, text, controlId)
+        return self._aux3.ControlGetText(title, text, controlId)
 
     def control_hide(self, title, text, controlId):
         """Hides a control.
@@ -297,7 +298,7 @@ class AutoItX3():
         :return: Success 1  Failure 0 window/control is not found
         :rtype: int
         """
-        return self.au3.ControlHide(title, text, controlId)
+        return self._aux3.ControlHide(title, text, controlId)
 
     def control_list_view(self, title, text, controlId, command, option1="", option2=""):
         """Sends a command to a ListView32 control.
@@ -315,16 +316,17 @@ class AutoItX3():
         :type option2: str
         :return:
         """
-        return self.au3.ControlListView(title, text, controlId, command, option1, option2)
+        return self._aux3.ControlListView(title, text, controlId, command, option1, option2)
 
     def control_move(self, title, text, controlId, x, y, width=LOWEST_INT, height=LOWEST_INT):
-        return self.au3.ControlListView(title, text, controlId, x, y, width, height)
+        return self._aux3.ControlListView(title, text, controlId, x, y, width, height)
 
     def control_send(self, title, text, controlId, string, flag=0):
         """Sends a string of characters to a control.
         Note, this function cannot send all the characters that the usual Send function can (notably ALT keys) but it
         can send most of them--even to non-active or hidden windows!
         ControlSend can be quite useful to send capital letters without messing up the state of "Shift."
+
         :param title: The title of the window to access.
         :type title: str or int
         :param text: The text of the window to access.
@@ -337,7 +339,7 @@ class AutoItX3():
         :return: Success 1  Failure 0
         :rtype: int
         """
-        return self.au3.ControlSend(title, text, controlId, string, flag)
+        return self._aux3.ControlSend(title, text, controlId, string, flag)
 
     def control_set_text(self, title, text, controlId, newText):
         """Sets text of a control.
@@ -353,13 +355,13 @@ class AutoItX3():
         :return: Success 1  Failure 0
         :rtype: int
         """
-        return self.au3.ControlSetText(title, text, controlId, newText)
+        return self._aux3.ControlSetText(title, text, controlId, newText)
 
     def control_show(self, title, text, controlId):
-        return self.au3.ControlShow(title, text, controlId)
+        return self._aux3.ControlShow(title, text, controlId)
 
     def control_tree_view(self, title, text, controlId, command, option1="", option2=""):
-        return self.au3.ControlTreeView(title, text, controlId, command, option1, option2)
+        return self._aux3.ControlTreeView(title, text, controlId, command, option1, option2)
 
     def drive_map_add(self, device, remoteShare, flags=0, user="", password=""):
         """Maps a network drive.
@@ -374,7 +376,7 @@ class AutoItX3():
         :param password: Optional: The password to use to connect.
         :return:
         """
-        return self.au3.DriveMapAdd(device, remoteShare, flags, user, password)
+        return self._aux3.DriveMapAdd(device, remoteShare, flags, user, password)
 
     def drive_map_del(self, device):
         """Disconnects a network drive
@@ -384,7 +386,7 @@ class AutoItX3():
         :return: Success 1  Failure 0
         :rtype: int
         """
-        return self.au3.DriveMapDel(device)
+        return self._aux3.DriveMapDel(device)
 
     def drive_map_get(self, device):
         """Retreives the details of a mapped drive.
@@ -394,25 +396,25 @@ class AutoItX3():
                  Failure: Returns a blank string "" and sets oAutoIt.error to 1.
         :rtype: str
         """
-        return self.au3.DriveMapGet(device)
+        return self._aux3.DriveMapGet(device)
 
     def ini_delete(self, filename, section, key=""):
-        return self.au3.IniDelete(filename, section, key)
+        return self._aux3.IniDelete(filename, section, key)
 
     def ini_read(self, filename, section, key, default):
-        return self.au3.IniRead(filename, section, key, default)
+        return self._aux3.IniRead(filename, section, key, default)
 
     def ini_write(self, filename, section, key, value):
-        return self.au3.IniWrite(filename, section, key, value)
+        return self._aux3.IniWrite(filename, section, key, value)
 
     def is_admin(self):
-        return self.au3.IsAdmin()
+        return self._aux3.IsAdmin()
 
     def mouse_click(self, button, x=LOWEST_INT, y=LOWEST_INT, clicks=1, speed=10):
-        return self.au3.MouseClick(button, x, y, clicks, speed)
+        return self._aux3.MouseClick(button, x, y, clicks, speed)
 
     def mouse_click_drag(self, button, x1, y1, x2, y2, speed=10):
-        return self.au3.MouseClickDrag(button, x1, y1, x2, y2, speed)
+        return self._aux3.MouseClickDrag(button, x1, y1, x2, y2, speed)
 
     def mouse_down(self, button):
         """Perform a mouse down event at the current mouse position.
@@ -422,7 +424,7 @@ class AutoItX3():
         :return: None
         :rtype: None
         """
-        return self.au3.MouseDown(button)
+        return self._aux3.MouseDown(button)
 
     def mouse_get_cursor(self):
         """Returns a cursor ID Number of the current Mouse Cursor.
@@ -446,7 +448,7 @@ class AutoItX3():
                  15 = WAIT
         :rtype: int
         """
-        return self.au3.MouseGetCursor()
+        return self._aux3.MouseGetCursor()
 
     def mouse_get_pos_x(self):
         """Retrieves the current X position of the mouse cursor.
@@ -454,10 +456,10 @@ class AutoItX3():
 
         :return: Returns the current X position of the mouse cursor.
         """
-        return self.au3.MouseGetPosX()
+        return self._aux3.MouseGetPosX()
 
     def mouse_get_pos_y(self):
-        return self.au3.MouseGetPosY()
+        return self._aux3.MouseGetPosY()
 
     def mouse_get_pos(self):
         """Retrieves the current position of the mouse cursor.
@@ -476,7 +478,7 @@ class AutoItX3():
                       mouse instantly. Default speed is 10.
         :return:
         """
-        return self.au3.MouseMove(x, y, speed)
+        return self._aux3.MouseMove(x, y, speed)
 
     def mouse_up(self, button):
         """Perform a mouse up event at the current mouse position.
@@ -486,7 +488,7 @@ class AutoItX3():
         :return: None
         :rtype: None
         """
-        return self.au3.MouseUp(button)
+        return self._aux3.MouseUp(button)
 
     def mouse_wheel(self, direction, clicks=1):
         """Moves the mouse wheel up or down. NT/2000/XP ONLY.
@@ -498,7 +500,7 @@ class AutoItX3():
         :return: None
         :rtype: None
         """
-        return self.au3.MouseWheel(direction, clicks)
+        return self._aux3.MouseWheel(direction, clicks)
 
     def pixel_checksum(self, left, top, right, bottom, step=1):
         """Generates a checksum for a region of pixels.
@@ -517,7 +519,7 @@ class AutoItX3():
         :return: Returns the checksum value of the region.
         :rtype: float
         """
-        return self.au3.PixelChecksum(left, top, right, bottom, step)
+        return self._aux3.PixelChecksum(left, top, right, bottom, step)
 
     def pixel_get_color(self, x, y):
         """Returns a pixel color according to x,y pixel coordinates.
@@ -527,7 +529,7 @@ class AutoItX3():
         :return: Returns decimal value of pixel's color. Failure Returns -1 if invalid coordinates.
         :rtype: int
         """
-        return self.au3.PixelGetColor(x, y)
+        return self._aux3.PixelGetColor(x, y)
 
     def pixel_search(self, left, top, right, bottom, colour, shadeVariation=0, step=1):
         """Searches a rectangle of pixels for the pixel color provided.
@@ -555,7 +557,7 @@ class AutoItX3():
                  Failure: Sets oAutoIt.error to 1 if color is not found.
         :rtype: tuple
         """
-        return self.au3.PixelSearch(left, top, right, bottom, colour, shadeVariation, step)
+        return self._aux3.PixelSearch(left, top, right, bottom, colour, shadeVariation, step)
 
     def process_close(self, process):
         """Terminates a named process.
@@ -571,7 +573,7 @@ class AutoItX3():
         :return: None. (Returns 1 regardless of success/failure.)
         :rtype: int
         """
-        return self.au3.ProcessClose(process)
+        return self._aux3.ProcessClose(process)
 
     def process_exists(self, process):
         """Checks to see if a specified process exists.
@@ -586,7 +588,7 @@ class AutoItX3():
                  Failure: Returns 0 if process does not exist.
         :rtype: int
         """
-        return self.au3.ProcessExists(process)
+        return self._aux3.ProcessExists(process)
 
     def process_set_priority(self, process, priority):
         """Changes the priority of a process
@@ -608,7 +610,7 @@ class AutoItX3():
                           unsupported priority class.
         :rtype: int
         """
-        return self.au3.SetPriority(process, priority)
+        return self._aux3.SetPriority(process, priority)
 
     def process_wait(self, process, timeout=0):
         """Pauses script execution until a given process exists.
@@ -621,7 +623,7 @@ class AutoItX3():
                  Failure: Returns 0 if the wait timed out.
         :rtype: int
         """
-        return self.au3.ProcessWait(process, timeout)
+        return self._aux3.ProcessWait(process, timeout)
 
     def process_wait_close(self, process, timeout=0):
         """Pauses script execution until a given process does not exist.
@@ -634,7 +636,7 @@ class AutoItX3():
                  Failure: Returns 0 if wait timed out.
         :rtype: int
         """
-        return self.au3.ProcessWaitClose(process, timeout)
+        return self._aux3.ProcessWaitClose(process, timeout)
 
     def reg_delete_key(self, keyName):
         """Deletes a key from the registry.
@@ -653,7 +655,7 @@ class AutoItX3():
                  Failure: Returns 2 if error deleting key.
         :rtype: int
         """
-        return self.au3.RegDeleteKey(keyName)
+        return self._aux3.RegDeleteKey(keyName)
 
     def reg_delete_val(self, keyName, valueName):
         """Deletes a value from the registry.
@@ -671,7 +673,7 @@ class AutoItX3():
                  Failure: Returns 2 if error deleting key/value.
         :rtype: int
         """
-        return self.au3.RegDeleteVal(keyName, valueName)
+        return self._aux3.RegDeleteVal(keyName, valueName)
 
     def reg_enum_key(self, keyName, instance):
         """Reads the name of a subkey according to it's instance.
@@ -688,7 +690,7 @@ class AutoItX3():
                           -1 if unable to retrieve requested subkey (key instance out of range)
         :rtype: str
         """
-        return self.au3.RegEnumKey(keyName, instance)
+        return self._aux3.RegEnumKey(keyName, instance)
 
     def reg_enum_val(self, keyName, instance):
         """Reads the name of a value according to it's instance.
@@ -703,7 +705,7 @@ class AutoItX3():
                           -1 if unable to retrieve requested value name (value instance out of range)
         :rtype: str
         """
-        return self.au3.RegEnumVal(keyName, instance)
+        return self._aux3.RegEnumVal(keyName, instance)
 
     def reg_read(self, keyName, valueName):
         """Reads a value from the registry.
@@ -724,7 +726,7 @@ class AutoItX3():
                           -2 if value type not supported
         :rtype: unicode or int
         """
-        return self.au3.RegRead(keyName, valueName)
+        return self._aux3.RegRead(keyName, valueName)
 
     def reg_write(self, keyName, valueName, type, value):
         """Creates a key or value in the registry.
@@ -745,7 +747,7 @@ class AutoItX3():
                  Failure: Returns 0 if error writing registry key or value.
         :rtype: int
         """
-        return self.au3.RegWrite(keyName, valueName, type, value)
+        return self._aux3.RegWrite(keyName, valueName, type, value)
 
     def run(self, filename, workingDir="", flag=1):
         """Runs an external program.
@@ -763,7 +765,7 @@ class AutoItX3():
                  Failure: see Remarks.
         :rtype: int
         """
-        return self.au3.Run(filename, workingDir, flag)
+        return self._aux3.Run(filename, workingDir, flag)
 
     def run_as_set(self, user, domain, password, options=1):
         """Initialise a set of user credentials to use during Run and RunWait operations. 2000/XP or later ONLY.
@@ -787,7 +789,7 @@ class AutoItX3():
                  subsequent Run/RunWait commands will fail....)
         :rtype: int
         """
-        return self.au3.RunAsSet(user, domain, password, options)
+        return self._aux3.RunAsSet(user, domain, password, options)
 
     def run_wait(self, filename, workingDir="", flag=1):
         """Runs an external program and pauses script execution until the program finishes.
@@ -807,7 +809,7 @@ class AutoItX3():
                  Failure: see Remarks.
         :rtype: int
         """
-        return self.au3.RunWait(filename, workingDir, flag)
+        return self._aux3.RunWait(filename, workingDir, flag)
 
     def send(self, keys, flag=0):
         """Sends simulated keystrokes to the active window.
@@ -820,7 +822,7 @@ class AutoItX3():
         :return: None
         :rtype: None
         """
-        return self.au3.Send(keys, flag)
+        return self._aux3.Send(keys, flag)
 
     def shutdown(self, code):
         """Shuts down the system.
@@ -836,7 +838,7 @@ class AutoItX3():
                  Failure: Returns 0.
         :rtype: int
         """
-        return self.au3.Shutdown(code)
+        return self._aux3.Shutdown(code)
 
     def sleep(self, delay):
         """Pause script execution.
@@ -846,7 +848,7 @@ class AutoItX3():
         :return: None
         :rtype: None
         """
-        return self.au3.Sleep(delay)
+        return self._aux3.Sleep(delay)
 
     def statusbar_get_text(self, title, text="", part=1):
         """Retrieves the text from a standard status bar control.
@@ -867,7 +869,7 @@ class AutoItX3():
                  Failure: Returns empty string and sets oAutoIt.error to 1 if no text could be read.
         :rtype: unicode
         """
-        return self.au3.StatusBarGetText(title, text, part)
+        return self._aux3.StatusBarGetText(title, text, part)
 
 if __name__ == '__main__':
     a = AutoItX3()
