@@ -1,4 +1,4 @@
-__author__ = 'florian.schaeffeler'
+from __future__ import absolute_import, division, print_function
 import pytest
 from autoit.autoitx import AutoItX3
 
@@ -29,7 +29,7 @@ class TestAutoItX3(object):
         pid = autoit.run(calcExecFilePath)
         assert autoit.error == 0
         assert pid > 0
-        print autoit.process_close(pid)
+        print(autoit.process_close(pid))
 
     def test_control_click(self, runCalcPid, autoit):
         """Add 5 + 3 in calc.exe
@@ -42,7 +42,7 @@ class TestAutoItX3(object):
         assert isinstance(autoit, AutoItX3)
         for controlId in [135, 93, 133, 121]:  # 5 + 3
             assert autoit.control_click("Calculator", "", controlId), "Could not click on Button %s %s" % (
-               controlId, self.test_control_click.__doc__)
+                controlId, self.test_control_click.__doc__)
         assert True
 
     def test_control_command(self, runCalcPid, autoit):

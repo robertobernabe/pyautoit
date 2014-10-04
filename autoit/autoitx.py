@@ -1,3 +1,4 @@
+﻿from __future__ import absolute_import, division, print_function
 __author__ = 'florian.schaeffeler'
 import win32com.client
 import pywintypes
@@ -42,15 +43,15 @@ class AutoItX3():
     """
     try:
         _aux3 = win32com.client.Dispatch("AutoItX3.Control")
-    except pywintypes.com_error, (hr, msg, exc, arg):
-        print "Could not bind AutoItX, call failed with code %d: %s" % (hr, msg)
-        if exc is None:
-            print "There is no extended error information"
+    except pywintypes.com_error as e:
+        print("Could not bind AutoItX, call failed with code %d: %s" % (e.hr, e.msg))
+        if e.exc is None:
+            print("There is no extended error information")
         else:
-             wcode, source, text, helpFile, helpId, scode = exc
-             print "The source of the error is", source
-             print "The error message is", text
-             print "More info can be found in %s (id=%d)" % (helpFile, helpId)
+             wcode, source, text, helpFile, helpId, scode = e.exc
+             print("The source of the error is", source)
+             print("The error message is", text)
+             print("More info can be found in %s (id=%d)" % (helpFile, helpId))
         raise Exception("Could not bind AutoItX, you may have to register AutoItX.dll\n%s" % 'regsvr32.exe "<path_to>\AutoItX3.dll"')
     SW_HIDE = _aux3.SW_HIDE
     SW_MAXIMIZE = _aux3.SW_MAXIMIZE
